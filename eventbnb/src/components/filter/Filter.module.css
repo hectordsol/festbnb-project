@@ -1,0 +1,242 @@
+.container {
+  border-bottom: solid 1px var(--light-grey);
+}
+
+.filterContainer {
+  display: inline-flex;
+ justify-content: space-between;
+align-items: center;
+  width: 100%;
+  z-index: 99;
+  margin: calc((100% - 105%) / 2) auto;
+}
+.filterContainer:hover {
+  /* Estilos para el hover */
+  border-color: var(--light-grey);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  width: 100%;
+  background-color: var(--white);
+}
+.fixedFilter {
+  /* Estilos para el fixed */
+  
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  position: fixed;
+  top: 100px;
+  z-index: 99;
+  background-color: var(--white);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.swiperContainerFilter {
+  /* position: relative; */
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+  top: 0;
+  margin-left: 30%;
+}
+.iconWrapper {
+ font-size: 2rem;
+}
+
+/*FLECHAS DE SLIDER DERECHA E IZQUIERDA*/
+.swiperContainerFilter .swiper-button-next,
+.swiperContainerFilter .swiper-button-prev {
+  display: none !important;
+}
+
+/* --------- FILTER BUTTON ---------*/
+.textPrice{
+  margin-top: 20px;
+}
+.textPrice, .textSecurity, .textCapacity, .textBath, .textAccesibility{
+  align-self: flex-start;
+  margin-left: 20px;
+  font-size: 1.5rem;
+}
+.textService{
+  align-self: flex-start;
+  margin-left: 20px;
+  font-size: 1.6rem;
+}
+.priceRange{
+  display: flex;
+  margin-right: auto;
+}
+.priceLabel, .priceInput {
+  font-size: 1.5rem;
+  margin-left: 20px;
+}
+.priceInput{
+  border: 2px solid var(--dark-grey);
+  border-radius: 5px;
+}
+.securityOption, .bathOption{
+ margin-left: 10px;
+}
+.filterBottom, .filterTitleTop{
+  position: fixed;
+  width: 100%;
+  
+}
+.filterTitleTop{
+margin-top: 0;
+top:0;
+padding: 10px 0;
+border-bottom: 2px solid var(--light-grey);
+border-radius: 20px;
+}
+.filterTitle{
+  margin-inline: auto;
+  margin-right: 45%;
+}
+.filterBottom{
+  
+  margin-bottom: 0;
+  bottom: 0;
+  padding: 10px 0;
+  border-top: 2px solid var(--light-grey);
+}
+.filterBottom{
+  border-radius: 20px;
+}
+/*BOTON FILTRO Y LIMPIAR FILTROS*/
+.clearAndButton{
+  display: flex;
+  align-items: center;
+}
+.clearFilter{
+  border: 2px solid var(--dark-grey);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 60px;
+  margin-right: 50px;
+  margin-bottom: 20%;
+}
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+  z-index: 999;
+  top: 50px;
+  left: 35%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  width: 150px;
+}
+
+.clearButton:hover .tooltip {
+  display: block;
+}
+
+/* Adjusting the position of the tooltip based on the button size */
+.clearButton {
+  position: relative;
+  display: inline-block;
+}
+
+/*Modal - Filter - Button*/
+.closeButton{
+  margin-left: 40px;
+    font-size: 1.3rem;
+}
+.filterModal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--dark-grey);
+  border-radius: 20px;
+  width: 50rem;
+  height: 85vh; /* Ajusta el valor según sea necesario */
+  cursor: pointer;
+  background-color: var(--white);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 15%);
+  z-index: 9999;
+}
+.modalContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.modalTitle{
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--dark-grey);
+  width: 100%;
+}
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Este valor controla la opacidad del fondo */
+  z-index: 10; /* Asegúrate de que el z-index sea mayor que el del modal para que se muestre por encima */
+}
+.filterButton1 {
+  /* position: fixed; */
+  border: solid 2px var(--dark-grey);
+  padding: 15px 25px;
+  border-radius: 20px;
+  font-size: 25px;
+  margin-top: 15%;
+  margin-bottom: 20%;
+ align-items: center;
+     top: 15%;
+     margin-left: 50px;
+}
+.filterTitleService, .priceRangeInput {
+  margin-right: auto;
+  margin-left: 5rem;
+}
+.filterTitleService h3{
+  margin-bottom: 15px;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.filterTitleService h3:hover{
+ font-weight: 600;
+
+}
+.optionsCheckbox:hover, .serviceOptions2:hover{
+  cursor: pointer;
+  
+}
+.priceRangeInput1{
+ margin-bottom: 40px; 
+}
+
+@media (max-width: 390px) {
+  .filterContainer {
+    display: block;
+    text-align: center;
+  }
+
+  .swiperContainerFilter {
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
+
+  .filterButton {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --foreground-rgb: 0, 0, 0;
+>>>>>>> 2b4b0d7535f39a919a69a8dbf5a0580054cebd0d
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255; */
+  --background: rgb(255, 133, 83);
+
+  --gradient: rgba(226, 60, 82, 0.2);
+  --pink: rgba(244, 0, 65, 0.891);
+  --white: #fff;
+  --black: #000;
+  --dark-grey: #adb5bd;
+  --dark2-grey: #606162;
+  --light-grey: #dee2e6;
+  --text-xs: 1rem;
+  --text-s: 1.2rem;
+  --text-m: 1.5rem;
+  --text-l: 2rem;
+  --text-xl: 3rem;
+}
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}*/
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.card-team {
+  clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+}
+
+.disable-scroll {
+  overflow: hidden;
+}

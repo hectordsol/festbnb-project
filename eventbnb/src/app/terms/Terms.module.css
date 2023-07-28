@@ -1,0 +1,44 @@
+.terms {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: var(--text-m);
+    line-height: 1.5;
+    color: var(--black); /*la lestras deben ir en black ya que la pagina esta en blanco si se te ve negra revisa tu máquina nada tiene que ver el global css, igual lo puede ocultar pero las letras van en black no white- by Adriana*/
+  }
+  
+  .terms h1 {
+    font-size: var(--text-l);
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--pink);
+  }
+
+  .terms h2{
+    color: var(--pink);
+  }
+  
+  .terms p {
+    margin-bottom: 10px;
+  }
+  
+  .terms ul {
+    margin-bottom: 10px;
+    padding-left: 20px;
+  }
+  
+  .terms li {
+    margin-bottom: 5px;
+  }
+  
+  .terms strong {
+    font-weight: bold;
+  }
+  
+  .terms em {
+    font-style: italic;
+  }
+  .logoContainer{
+ display: grid;
+ justify-items: center;
+  }

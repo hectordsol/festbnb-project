@@ -1,0 +1,42 @@
+{
+  "accesibilidad": true,
+  "aire_acondicionado": 3,
+  "baño": 5,
+  "baño_accesibilidad": true,
+  "borrado": false,
+  "capacidad_max": 200,
+  "catering": true,
+  "cocina": true,
+  "decoracion": true,
+  "domicilio": "Plaza Mayor 987",
+  "escenario": true,
+  "estacionamiento": true,
+  "eventos": [],
+  "fechaCreacion": "2023-07-24T13:12:50.649Z",
+  "fotografia": true,
+  "imagenes": [
+    "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/PUI3I4AUPZDPVPBUXBEIYZ3AJY.jpg",
+    "https://i.pinimg.com/736x/cc/e6/25/cce6255311443303fa947853419169e9.jpg",
+    "https://gruposantarosa.mx/wp-content/uploads/6-1.jpg"
+  ],
+  "localidad": "Capital",
+  "luces": true,
+  "mesas_sillas": true,
+  "nombre": "Salón Elegante",
+  "pantalla": 1,
+  "parrilla": 2,
+  "personal_seguridad": 7,
+  "pileta": true,
+  "precio": 600000,
+  "propietario": {
+    "_id": "64aefa4091216cc69ec9693c"
+  },
+  "reviews": [],
+  "sonido": true,
+  "superficie": 50,
+  "telefono": 3515422565,
+  "ubicacion": "String",
+  "wifi": false,
+  "__v": 0,
+  "_id": "64af25733a984b5ea57ba099"
+}

@@ -1,0 +1,26 @@
+ export const countries = [
+    { "code": "AR", "name": "Argentina" },
+    { "code": "BO", "name": "Bolivia" },
+    { "code": "BR", "name": "Brazil" },
+    { "code": "CL", "name": "Chile" },
+    { "code": "CO", "name": "Colombia" },
+    { "code": "CR", "name": "Costa Rica" },
+    { "code": "CU", "name": "Cuba" },
+    { "code": "DO", "name": "Dominican Republic" },
+    { "code": "EC", "name": "Ecuador" },
+    { "code": "SV", "name": "El Salvador" },
+    { "code": "GT", "name": "Guatemala" },
+    { "code": "HT", "name": "Haiti" },
+    { "code": "HN", "name": "Honduras" },
+    { "code": "JM", "name": "Jamaica" },
+    { "code": "MX", "name": "Mexico" },
+    { "code": "NI", "name": "Nicaragua" },
+    { "code": "PA", "name": "Panama" },
+    { "code": "PY", "name": "Paraguay" },
+    { "code": "PE", "name": "Peru" },
+    { "code": "PR", "name": "Puerto Rico" },
+    { "code": "SR", "name": "Suriname" },
+    { "code": "UY", "name": "Uruguay" },
+    { "code": "VE", "name": "Venezuela" }
+  ];
+ 

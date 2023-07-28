@@ -1,0 +1,220 @@
+
+.fixedHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100; /* Asegura que el header fijo se muestre por encima del contenido */
+}
+.container{
+  display: flex;
+  border-bottom: solid 1px var(--light-grey);
+  background-color: var(--white);
+  justify-content: space-around;
+  
+}
+.search__container {
+    
+    background-color: #fff;
+   
+  }
+  
+  .logo {
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: var(--text-l);
+    color: var(--pink);
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  /* SEARCHBAR */
+  .searchBar {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    cursor: pointer;
+  }
+  
+  .clearSearch {
+    position: absolute;
+    right: 5px;
+    top: 15%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: red;
+    margin-right: 5%;
+  }
+  
+  .searchInput {
+    color: black;
+    text-align: left;
+    border: 2px solid var(--light-grey);
+    border-radius: 30px;
+    padding: 20px 20px;
+    outline: none;
+    height: 60px;
+    width: 25rem;
+  }
+  
+  .searchInput {
+    flex-grow: 1;
+    font-size: var(--text-m);
+  }
+  
+  .searchInput:focus, .userModal:focus{
+    border-color: var(--dark-grey);
+    background-color: var(--light-grey);
+  }
+  
+  .searchInput:hover, .userModal:hover {
+    box-shadow: 0 0 5px var(--dark-grey);
+  }
+  
+  .searchInput::placeholder, .userModal::placeholder {
+    color: var(--foreground-rgb);
+    font-weight: 500;
+    font-size: var(--text-s);
+  }
+  
+  .searchInput::placeholder:focus, .userModal::placeholder:focus {
+    color: var(--white);
+    font-weight: 800;
+  }
+  
+  /* SEARCH BUTTON */
+  .searchButton {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--white);
+    margin-left: -120%;
+    cursor: pointer;
+    
+  }
+  
+  /* SEARCH ROOMS */
+  .searchList {
+    color: var(--black);
+  }
+  .searchResult {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 999;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: var(--text-m);
+    line-height: 3rem;
+    font-weight: 700;
+    margin: auto;
+   
+  }
+  /* USUARIO */
+  .userModal {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--dark-grey);
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    background-color: var(--white);
+    padding: 10px;
+    margin-right: 20px;
+  }
+  .faUser {
+    border-radius: 50%;
+    background-color: var(--dark2-grey);
+    width: 32px;
+    height: 32px;
+    color: var(--white);
+    cursor: pointer;
+  }
+  
+  .userButton {
+    display: flex;
+    flex-direction: column;
+     position: fixed; 
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  }
+  
+  .userButton:hover {
+    color: var(--dark2-grey);
+  }
+ .login{
+    position: absolute;
+    background-color: var(--white);
+    border: 2px solid var(--light-grey);
+    border-radius: 30px;
+    margin-left: auto;
+    cursor: pointer;
+    box-shadow: 0 0 5px 0px var(--dark-grey);
+ }
+
+.login__button1, .login__button2{
+  font-weight: 500;
+}
+
+.login__button1:hover, .login__button2:hover{
+    font-weight: 800;
+}
+  
+  /* RESPONSIVE */
+  
+  @media (max-width: 390px) {
+ 
+    .search__container{
+        display: block;
+        padding: 20px 20px;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: var(--text-m);
+      margin-left: 40%; 
+    }
+    .searchInput{
+        width: 100%;
+        margin-left: 10%;
+    }
+    .searchButton{
+        margin-left: -60%;
+    }
+    .userModal{
+            margin-left: 40%;
+            margin-bottom: 20px;
+    }
+    .login {
+      display: flex;
+      height: 3rem;
+      border-radius: 0.5rem;
+      width: 100%;
+    }
+    
+    .login__btn1, .login__btn2 {
+      align-items: center;
+      height: 100%;
+
+      margin: 0;
+      color: #fff;
+      border-radius: 0.5rem;
+    } 
+    .login__btn1:hover, .login__btn2:hover {
+      font-weight: 600;
+      cursor: pointer;
+    } 
+  }
+
+  
