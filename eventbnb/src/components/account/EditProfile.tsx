@@ -11,7 +11,12 @@ import { useRouter } from "next/navigation";
 import useUsers from "@/hooks/useUsers";
 import axios from "axios";
 import AlertError from "@/components/alert/AlertError";
-
+import {User} from "../..//context/UserProvider";
+type UsersContextType = {
+    validateSession: () => boolean;
+    getUserData: () => Promise<User>; 
+    // Otras funciones y propiedades del contexto si existen
+  };
 type FormData = yup.InferType<typeof schema>;
 
 const schema = yup.object().shape({
@@ -29,7 +34,7 @@ const schema = yup.object().shape({
 });
 
 const EditProfile: React.FC = () => {
-  const { validateSession, getUserData } = useUsers();
+  const {validateSession, getUserData} = useUsers() as UsersContextType;
   const [data, setData] = useState();
   const { data: session } = useSession();
   const [jsonWebToken, setJsonWebToken] = useState("");
