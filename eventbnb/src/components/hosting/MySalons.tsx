@@ -12,23 +12,28 @@ import {AiOutlineCheck, AiOutlinePlus} from 'react-icons/ai'
 import Link from "next/link";
 import { services, columns, convertDate } from "./utils";
 import EditSalon from "./EditSalon";
-
+import {User, Salones} from "../..//context/UserProvider";
+type UsersContextType = {
+    validateSession: () => boolean;
+    getUserData: () => Promise<User>; 
+    // Otras funciones y propiedades del contexto si existen
+  };
 const MySalons = () => {
-    
+
     const router = useRouter()
-    const {validateSession, getUserData} = useUsers()
+    const {validateSession, getUserData} = useUsers() as UsersContextType;
 
     const [dropdown, setDropdown] = useState(false)
-    const [data, setData] = useState([])
-    const [auxData, setAuxData] = useState([])
+    const [salones, setSalones] = useState<Salones[]>([]);
+    const [auxData, setAuxData] = useState<Salones[]>([])
     const [lowToHigh, setLowToHigh] = useState(false)
     const [activeServices, setActiveServices] = useState(services)
 
     const [checkeds, setCheckeds] = useState({})
 
     const [isHidden, setIsHidden] = useState(true)
-    const [formHidden, setFormHidden] = useState(true)
-    const [userData, setUserData] = useState({})
+    const [formHidden, setFormHidden] = useState(true);
+    const [userData, setUserData] = useState<User>();
     const [salonData, setSalonData] = useState({})
 
     useEffect(() => {
@@ -45,7 +50,7 @@ const MySalons = () => {
                     return acc;
                 }, {})
                 setCheckeds(checks)
-                setData(data.data.salones)
+                setSalones(data.data.salones)
                 setAuxData(data.data.salones)
             } catch (error) {
                 setIsHidden(false)
@@ -64,13 +69,13 @@ const MySalons = () => {
         switch (type) {
             case 'string':
                 if(order){
-                    let arrOrder = data.sort((a, b) => a[attribute].localeCompare(b[attribute]));
+                    let arrOrder = salones.sort((a, b) => a[attribute].localeCompare(b[attribute]));
                     console.log(arrOrder)
                     setAuxData(arrOrder)
                     setLowToHigh(!lowToHigh)    
                     break;
                 }
-                let arrOrder = data.sort((a, b) => b[attribute].localeCompare(a[attribute]));
+                let arrOrder = salones.sort((a, b) => b[attribute].localeCompare(a[attribute]));
                 console.log(arrOrder)
                 setAuxData(arrOrder)
                 setLowToHigh(!lowToHigh)
@@ -78,38 +83,38 @@ const MySalons = () => {
 
             case 'date':
                 if(order){
-                    let arrOrderDate = data.sort((a, b) => new Date(b[attribute]) - new Date(a[attribute]));
+                    let arrOrderDate = salones.sort((a, b) => new Date(b[attribute]).getTime() - new Date(a[attribute]).getTime());
                     setAuxData(arrOrderDate)
                     setLowToHigh(!lowToHigh)
                     break;    
                 }
-                let arrOrderDate = data.sort((a, b) => new Date(a[attribute]) - new Date(b[attribute]));
+                let arrOrderDate = salones.sort((a, b) => new Date(a[attribute]).getTime() - new Date(b[attribute]).getTime());
                 setAuxData(arrOrderDate)
                 setLowToHigh(!lowToHigh)
                 break;
 
             case 'number':
                 if(order){
-                    let arrOrderNumber = data.sort((a, b) => b[attribute] - a[attribute]);
+                    let arrOrderNumber = salones.sort((a, b) => b[attribute] - a[attribute]);
                     setAuxData(arrOrderNumber)
                     setLowToHigh(!lowToHigh)
                     break;
                 }
 
-                let arrOrderNumber = data.sort((a, b) => a[attribute] - b[attribute]);
+                let arrOrderNumber = salones.sort((a, b) => a[attribute] - b[attribute]);
                 console.log(arrOrderNumber)
                 setAuxData(arrOrderNumber)
                 setLowToHigh(!lowToHigh)
                 break;
         
             default:
-                setAuxData(data)
+                setAuxData(salones)
                 break;
         }
     } 
 
     const handleSearchBar = (e) => {
-        const arrData = data.filter(salon => {
+        const arrData = salones.filter(salon => {
             return salon.nombre.toLowerCase().includes(e.target.value.toLowerCase())
         })
 
@@ -129,10 +134,10 @@ const MySalons = () => {
 
     const handleServices = () => {
         const trueServices = activeServices.filter(service => service.isActive === true).map(service => service.state)
-        if(!trueServices.length) return setAuxData(data)
-        if(trueServices.length === services.length) return setAuxData(data)
+        if(!trueServices.length) return setAuxData(salones)
+        if(trueServices.length === services.length) return setAuxData(salones)
 
-        const salonsFilter = data.filter((salon) => {
+        const salonsFilter = salones.filter((salon) => {
             for (const service of trueServices) {
                 return salon[service] === true
             }
@@ -142,11 +147,11 @@ const MySalons = () => {
     }
 
     const clearFilters = () => {
-        return setAuxData(data)
+        return setAuxData(salones)
     }
 
     const handleFormEdit = (hidden, id, attr) => {
-        const aux = data.reduce((acc, salon) => {
+        const aux = salones.reduce((acc, salon) => {
             acc[salon.nombre] = false;
             return acc;
         }, {})
@@ -154,7 +159,7 @@ const MySalons = () => {
         setFormHidden(hidden)
         setCheckeds({...aux, [attr]: !checkeds[attr]}) 
 
-        const dataSalon = data.filter(salon => salon._id === id)
+        const dataSalon = salones.filter(salon => salon._id === id)
         setSalonData(dataSalon[0])
     }
     
@@ -210,7 +215,7 @@ const MySalons = () => {
                 </div>
                 <Link 
                 className="px-4 py-2 flex items-center gap-x-2 border border-black rounded-xl hover:bg-black/5 font-semibold"
-                href={`/become-a-host/${userData._id}/overview`}>
+                href={`/become-a-host/${userData?._id}/overview`}>
                     <AiOutlinePlus className="text-black text-xl"></AiOutlinePlus>
                     <span>Crear anuncio</span>
                 </Link>
@@ -271,7 +276,7 @@ const MySalons = () => {
                                 }
                                 </td>
                                 <td className="px-6 pr-4">
-                                    {convertDate(salon?.fechaCreacion)}
+                                    {convertDate(salon?.fechaCreacion?.toISOString() ?? "")}
                                 </td>
                                 <td className="px-6 pr-4">
                                     {salon?.baño}
@@ -288,7 +293,7 @@ const MySalons = () => {
                 </tbody>
             </table>
             <AlertError method={handleClick} param={'/'} isHidden={isHidden} setIsHidden={setIsHidden} href={'/'}></AlertError>
-            <EditSalon data={data} salonData={salonData} setSalonData={setSalonData}  setFormHidden={setFormHidden} setCheckeds={setCheckeds} formHidden={formHidden}></EditSalon>
+            <EditSalon data={salones} salonData={salonData} setSalonData={setSalonData}  setFormHidden={setFormHidden} setCheckeds={setCheckeds} formHidden={formHidden}></EditSalon>
         </div>
     )
 }

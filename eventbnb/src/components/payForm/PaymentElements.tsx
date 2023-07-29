@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, {useState} from "react";
 import { FaMedal, FaStar, FaFacebookF, FaAngleDown, FaXmark, FaMinus, FaPlus } from "react-icons/fa6";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { BiSolidCloudUpload } from "react-icons/bi"
@@ -439,7 +439,7 @@ export function ModalHostMessage({ onclick }) {
 export function ModalProfileImage({ onclick }) {
 
 	const [isFileUploaded, setIsFileUploaded] = React.useState(false);
-	const [selectedFile, setSelectedFile] = React.useState(null);
+	const [selectedFile, setSelectedFile] = useState<string>('');
 
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
@@ -449,7 +449,7 @@ export function ModalProfileImage({ onclick }) {
 
 	const handleReset = () => {
 		setIsFileUploaded(false);
-		setSelectedFile(null);
+		setSelectedFile('');
 	};
 
 	return (

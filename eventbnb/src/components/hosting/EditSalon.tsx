@@ -10,7 +10,7 @@ import {SiCodechef} from 'react-icons/si'
 import Image from "next/image";
 import ubication from '../../../public/images/googleMaps.jpeg'
 import AlertEditSalon from "../alert/AlertEditSalon";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 interface Options {
     text: string;

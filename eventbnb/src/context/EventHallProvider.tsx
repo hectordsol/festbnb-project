@@ -13,12 +13,13 @@ export interface IEventHallProvider {
   services: IServicesData[] | null;
   reviews: IReviews | null;
   disabled: Boolean;
-  setDisabled: (disabled: Boolean) => Dispatch<SetStateAction<Boolean>>;
+  setDisabled: (disabled: Boolean) => void;//Dispatch<SetStateAction<Boolean>>;
   getEventHall: () => Promise<void>;
   formattedDateReservation: string;
-  setFormattedDateReservation: (disabled: string) => Dispatch<SetStateAction<Boolean>>;
-  setReserva: (id: string) => Dispatch<SetStateAction<string>>;
+  setFormattedDateReservation: (disabled: string) => void;//Dispatch<SetStateAction<Boolean>>;
+  setReserva: (id: string) => void;//Dispatch<SetStateAction<string>>;
   reserva: string;
+  getData: () => Promise<void>;
 }
 
 export interface IReview {
@@ -53,7 +54,7 @@ export const EventHallProvider = ({ children, id }: IProps) => {
   const [formattedDateReservation, setFormattedDateReservation] = useState<string>('')
   const router = useRouter();
 
-  const getData = async () => {
+  const getData = async () : Promise<void> => {
     let data: IEventHall | null = null;
 
     try {

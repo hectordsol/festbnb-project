@@ -111,11 +111,11 @@ export const columns: Columns[] = [
     }
 ]
 
-export const convertDate = (date) => {
-    const s = new Date(date);
-    const days = ['Domingo','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const dayName = days[s.getUTCDay()];
-    const options = { month: '2-digit', year: '2-digit' };
+export const convertDate = (date:string) => {
+    const s :Date = new Date(date);
+    const days :string[] = ['Domingo','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const dayName:string = days[s.getUTCDay()];
+    const options:object = { month: '2-digit', year: '2-digit' };
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(s);
     return `${dayName} ${formattedDate}`
 }

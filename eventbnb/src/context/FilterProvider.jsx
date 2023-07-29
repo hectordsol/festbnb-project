@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
-import saveInLocalStorage from "./assets/saveInLocalStorage";
-import removeFromLocalStorage from "./assets/removeFromLocalStorage";
-import { newPetition } from "./assets/customFetch";
+// import saveInLocalStorage from "./assets/saveInLocalStorage";
+// import removeFromLocalStorage from "./assets/removeFromLocalStorage";
+// import { newPetition } from "./assets/customFetch";
 
 export const FilterContext = createContext({
   filteredCards: [],

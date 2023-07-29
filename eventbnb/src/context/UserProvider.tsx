@@ -2,11 +2,12 @@
 import { useEffect } from "react";
 import { getCookie } from "@/utils/cookies";
 import axios from "axios";
-import { createContext, use, useState } from "react";
+import { createContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-interface User {
+export interface User {
+  _id:string;
   nombre: string;
   domicilio: string;
   localidad: string;
@@ -88,8 +89,8 @@ export const UsersProvider = ({ children }) => {
   const { data: session } = useSession();
   const [list, setList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
-
-  async function getSalones() {
+                    
+  const getSalones = async() :Promise<void> => {
     const { data } = await axios(`${url}/salones`);
     const list = data;
     console.log(list);
@@ -101,6 +102,7 @@ export const UsersProvider = ({ children }) => {
   }, []);
 
   const [user, setUser] = useState<User>({
+    _id:"",
     nombre: "",
     domicilio: "",
     localidad: "",
@@ -136,14 +138,14 @@ export const UsersProvider = ({ children }) => {
 
   const router = useRouter();
 
-  const validateSession = () => {
+  const validateSession = (): boolean =>  {
     const jwt = getCookie("userToken");
 
     if (!session && !jwt) return false;
     return true;
   };
 
-  const getUserData = async () => {
+  const getUserData = async (): Promise<User> => {
     const jwt = getCookie("userToken");
     // console.log(jwt)
     const { data } = await axios(
