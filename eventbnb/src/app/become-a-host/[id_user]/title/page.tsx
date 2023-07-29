@@ -1,7 +1,7 @@
 "use client";
 
 import BackButton from "../../../../components/create-halls/backButton";
-import ButtonHalls from "@/components/create-halls/ButtonHalls";
+// import ButtonHalls from "@/components/create-halls/ButtonHalls";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -9,7 +9,8 @@ import useSalons from "@/hooks/useSalons";
 import axios from "axios";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import { Salon } from "@/app/api/filters/route";
+// import {Salones} from "../../../../context/UserProvider";
 type FormData = yup.InferType<typeof schema>;
 
 const schema = yup.object().shape({
@@ -19,9 +20,12 @@ const schema = yup.object().shape({
   ubicacion: yup.string().required("La ubicación es requerida"),
   telefono: yup.number().required("El teléfono es requerido"),
 });
-
+type UsersContextType = {
+  salon:  Salon;
+  setSalon: (salon: Salon) => void; 
+};
 const PassedFinal: React.FC = () => {
-  const { salon, setSalon } = useSalons<Salon>();
+  const { salon, setSalon } = useSalons() as UsersContextType;
   const router = useRouter()
   const {
     handleSubmit,
@@ -31,11 +35,9 @@ const PassedFinal: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleInputChange = event => {
-    setSalon(prevState => ({
-      ...prevState,
-      [event.target.name]: event.target.value
-    }));
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target;
+    setSalon((prevState: Salon)  => ({...prevState, [name]: value}));
   };
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const PassedFinal: React.FC = () => {
     const parts = pathname.split('/');
     const id_user = parts[2];
 
-    setSalon(prevState => ({
+    setSalon((prevState: Salon) => ({
       ...prevState,
       propietario: id_user
     }));
@@ -56,22 +58,27 @@ const PassedFinal: React.FC = () => {
     try {
       await axios.post(`http://104.154.93.179:5000/salones`, salon);
       setSalon({
+        _id:"",
         nombre: "",
         domicilio: "",
         localidad: "",
         ubicacion: "",
         imagenes: [],
-        telefono: "",
+        telefono: 0,
         precio: 0, 
         capacidad_max: 0,
         superficie: 0, 
+        disponibilidad:false,
+        calefaccion: 0,
         aire_acondicionado: 0,
         parrilla: 0,
         pantalla: 0,
         personal_seguridad: 0,
         baño: 0,
         baño_accesibilidad: false,
-        accesibilidad: false,
+        pasillo_accesibilidad: false,
+        entrada_accesibilidad:false,
+        estacionamiento_accesibilidad:false,
         estacionamiento: false,
         catering: false, 
         mesas_sillas:false,
@@ -82,9 +89,15 @@ const PassedFinal: React.FC = () => {
         pileta:false,
         wifi:false,
         cocina:false,
+        bar:false,
         escenario:false,
         descripcion:"",
-        propietario:"id_user"
+        propietario:"id_user",
+        puntuacion:"",
+        eventos:[],
+        mascotas:false,
+        area_infantil:false,
+        area_fumadores:false
       })
       router.push('/')
     } catch (error) { 

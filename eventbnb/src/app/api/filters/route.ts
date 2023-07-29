@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 const url = process.env.MICROSERVICIOS
 
 export interface Salon {
+    _id:String
     nombre: String
     domicilio: String
     localidad: String
@@ -39,7 +40,7 @@ export interface Salon {
     descripcion: String
     propietario:String
     puntuacion: String
-    eventos: String 
+    eventos: Array<String> 
     mascotas: Boolean 
     area_infantil: Boolean
     area_fumadores: Boolean
